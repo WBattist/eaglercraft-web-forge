@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 
 const Index = () => {
@@ -10,9 +9,8 @@ const Index = () => {
     // Function to check server status
     const checkServerStatus = async () => {
       try {
-        // Try to ping the server - this is a basic check
-        // You'll need to replace this with your actual server status API
-        const response = await fetch('https://api.mcsrvstat.us/2/eaglernet.org');
+        // Check server status for java.eaglernet.net
+        const response = await fetch('https://api.mcsrvstat.us/2/java.eaglernet.net');
         const data = await response.json();
         
         if (data.online) {
