@@ -2,14 +2,40 @@
 import { useEffect, useState } from 'react';
 
 const Index = () => {
-  const [playerCount, setPlayerCount] = useState(127);
-  const [isOnline, setIsOnline] = useState(true);
+  const [playerCount, setPlayerCount] = useState(0);
+  const [isOnline, setIsOnline] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate dynamic player count
-    const interval = setInterval(() => {
-      setPlayerCount(prev => prev + Math.floor(Math.random() * 5) - 2);
-    }, 5000);
+    // Function to check server status
+    const checkServerStatus = async () => {
+      try {
+        // Try to ping the server - this is a basic check
+        // You'll need to replace this with your actual server status API
+        const response = await fetch('https://api.mcsrvstat.us/2/eaglernet.org');
+        const data = await response.json();
+        
+        if (data.online) {
+          setIsOnline(true);
+          setPlayerCount(data.players?.online || 0);
+        } else {
+          setIsOnline(false);
+          setPlayerCount(0);
+        }
+      } catch (error) {
+        console.log('Server status check failed:', error);
+        setIsOnline(false);
+        setPlayerCount(0);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    // Check status immediately
+    checkServerStatus();
+
+    // Check status every 30 seconds
+    const interval = setInterval(checkServerStatus, 30000);
 
     return () => clearInterval(interval);
   }, []);
@@ -62,14 +88,14 @@ const Index = () => {
             EaglerNetwork
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-2xl mx-auto">
-            The Ultimate Minecraft Experience in Your Browser
+            The Ultimate Eaglercraft network where your input matters
           </p>
           
           {/* Server Status */}
           <div className="inline-flex items-center bg-gray-800/80 backdrop-blur-sm border border-green-500/30 rounded-lg p-4 mb-8">
             <div className={`w-3 h-3 rounded-full mr-3 ${isOnline ? 'bg-green-400' : 'bg-red-400'} animate-pulse`}></div>
             <span className="text-green-400 font-semibold">
-              {isOnline ? 'ONLINE' : 'OFFLINE'} • {playerCount} Players
+              {isLoading ? 'CHECKING...' : isOnline ? 'ONLINE' : 'OFFLINE'} • {playerCount} Players
             </span>
           </div>
 
@@ -112,9 +138,9 @@ const Index = () => {
                 icon: "⚔️"
               },
               {
-                title: "Creative Worlds",
-                description: "Build amazing structures in our creative realms",
-                icon: "🏗️"
+                title: "Survival Worlds",
+                description: "Explore vast survival worlds with friends",
+                icon: "🏞️"
               },
               {
                 title: "24/7 Uptime",
@@ -206,11 +232,8 @@ const Index = () => {
             <a href="#" className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 minecraft-button">
               Discord Server
             </a>
-            <a href="#" className="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 minecraft-button">
-              YouTube Channel
-            </a>
             <a href="#" className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 minecraft-button">
-              Forums
+              Forums (Coming Soon)
             </a>
           </div>
         </div>
@@ -220,7 +243,7 @@ const Index = () => {
       <footer className="bg-gray-900 border-t border-green-500/30 py-8">
         <div className="container mx-auto px-6 text-center">
           <div className="text-xl font-bold text-green-400 mb-4 pixel-font">EaglerNetwork</div>
-          <p className="text-gray-400 mb-4">The Ultimate Minecraft Browser Experience</p>
+          <p className="text-gray-400 mb-4">The Ultimate Eaglercraft network where your input matters</p>
           <p className="text-gray-500 text-sm">
             © 2024 EaglerNetwork. Not affiliated with Mojang or Microsoft.
           </p>
