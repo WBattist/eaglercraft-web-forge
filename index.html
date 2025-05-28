@@ -21,12 +21,159 @@
     <!-- Preload important fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="minecraft-theme">
+      <!-- Navigation -->
+      <nav class="nav">
+        <div class="container">
+          <div class="nav-content">
+            <div class="logo pixel-font">EaglerNetwork</div>
+            <div class="nav-links">
+              <button onclick="scrollToSection('home')" class="nav-link">Home</button>
+              <button onclick="scrollToSection('features')" class="nav-link">Features</button>
+              <button onclick="scrollToSection('join')" class="nav-link">Join</button>
+              <button onclick="scrollToSection('community')" class="nav-link">Community</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        
+        <!-- Animated Background Blocks -->
+        <div class="floating-blocks">
+          <div class="minecraft-block" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+          <div class="minecraft-block" style="left: 80%; top: 30%; animation-delay: 0.5s;"></div>
+          <div class="minecraft-block" style="left: 20%; top: 60%; animation-delay: 1s;"></div>
+          <div class="minecraft-block" style="left: 70%; top: 70%; animation-delay: 1.5s;"></div>
+          <div class="minecraft-block" style="left: 50%; top: 10%; animation-delay: 2s;"></div>
+          <div class="minecraft-block" style="left: 90%; top: 80%; animation-delay: 2.5s;"></div>
+        </div>
+
+        <div class="hero-content">
+          <h1 class="hero-title pixel-font">EaglerNetwork</h1>
+          <p class="hero-subtitle">The Ultimate Eaglercraft network where your input matters</p>
+          
+          <!-- Server Status -->
+          <div class="server-status">
+            <div class="status-indicator" id="statusIndicator"></div>
+            <span class="status-text" id="statusText">CHECKING... • 0 Players</span>
+          </div>
+
+          <button onclick="scrollToSection('join')" class="cta-button minecraft-button">
+            JOIN NOW
+          </button>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="section features-section">
+        <div class="container">
+          <h2 class="section-title pixel-font">Server Features</h2>
+          
+          <div class="features-grid">
+            <div class="feature-card minecraft-card">
+              <div class="feature-icon">🌐</div>
+              <h3 class="feature-title">No Downloads</h3>
+              <p class="feature-description">Play directly in your browser with EaglerCraft technology</p>
+            </div>
+            
+            <div class="feature-card minecraft-card">
+              <div class="feature-icon">⚡</div>
+              <h3 class="feature-title">Custom Plugins</h3>
+              <p class="feature-description">Unique gameplay features and custom game modes</p>
+            </div>
+            
+            <div class="feature-card minecraft-card">
+              <div class="feature-icon">👥</div>
+              <h3 class="feature-title">Active Community</h3>
+              <p class="feature-description">Join hundreds of players in our vibrant community</p>
+            </div>
+            
+            <div class="feature-card minecraft-card">
+              <div class="feature-icon">⚔️</div>
+              <h3 class="feature-title">PvP Arenas</h3>
+              <p class="feature-description">Compete in custom-built PvP battlegrounds</p>
+            </div>
+            
+            <div class="feature-card minecraft-card">
+              <div class="feature-icon">🏞️</div>
+              <h3 class="feature-title">Survival Worlds</h3>
+              <p class="feature-description">Explore vast survival worlds with friends</p>
+            </div>
+            
+            <div class="feature-card minecraft-card">
+              <div class="feature-icon">🔧</div>
+              <h3 class="feature-title">24/7 Uptime</h3>
+              <p class="feature-description">Reliable server with excellent performance</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How to Join Section -->
+      <section id="join" class="section join-section">
+        <div class="container">
+          <h2 class="section-title pixel-font">How to Join</h2>
+          
+          <div class="join-content">
+            <div class="join-grid">
+              <div class="join-card minecraft-card">
+                <h3 class="join-method-title">EaglerCraft (Browser)</h3>
+                <ol class="join-steps">
+                  <li><span class="step-number">1</span>Open your web browser</li>
+                  <li><span class="step-number">2</span>Visit eaglercraft.com</li>
+                  <li><span class="step-number">3</span>Add server: <code>eaglernet.org</code></li>
+                  <li><span class="step-number">4</span>Click "Join Server" and start playing!</li>
+                </ol>
+              </div>
+              
+              <div class="join-card minecraft-card">
+                <h3 class="join-method-title">Minecraft Java Edition</h3>
+                <ol class="join-steps">
+                  <li><span class="step-number">1</span>Launch Minecraft Java Edition</li>
+                  <li><span class="step-number">2</span>Go to "Multiplayer"</li>
+                  <li><span class="step-number">3</span>Add server: <code>play.eaglernet.org</code></li>
+                  <li><span class="step-number">4</span>Join and explore our world!</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Community Section -->
+      <section id="community" class="section community-section">
+        <div class="container">
+          <h2 class="section-title pixel-font">Join Our Community</h2>
+          <p class="community-subtitle">Connect with fellow players, get updates, and participate in events</p>
+          
+          <div class="community-buttons">
+            <a href="#" class="community-button discord-button minecraft-button">Discord Server</a>
+            <a href="#" class="community-button forums-button minecraft-button">Forums (Coming Soon)</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-title pixel-font">EaglerNetwork</div>
+            <p class="footer-subtitle">The Ultimate Eaglercraft network where your input matters</p>
+            <p class="footer-copyright">© 2024 EaglerNetwork. Not affiliated with Mojang or Microsoft.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
